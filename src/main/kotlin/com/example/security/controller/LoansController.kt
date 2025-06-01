@@ -4,10 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class WelcomeController {
+class LoansController {
 
-    @GetMapping("/")
-    public fun sayWelcome(): String  {
-        return "Welcome to Spring Application with security"
-    }
+    @GetMapping("/myLoans")
+    public fun getLoansDetails(): String  = "Loans from DB"
 }
