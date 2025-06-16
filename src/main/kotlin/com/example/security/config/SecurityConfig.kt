@@ -22,16 +22,19 @@ class SecurityConfig {
             auth.requestMatchers(
                 "/myAccount", "/myCards", "/myBalance", "/myLoans"
             ).authenticated().requestMatchers(
-                    "/notices", "/contact", "/error"
+                    "/notices", "/contact", "/error", "/register"
                 ).permitAll()
-        }.formLogin(withDefaults()).httpBasic(withDefaults())
+        }
+            .formLogin(withDefaults())
+            .httpBasic(withDefaults())
+            .csrf { it.disable() }
         return http.build()
     }
 
-    @Bean
-    fun userDetailsService(datasource: DataSource): UserDetailsService {
-        return JdbcUserDetailsManager(datasource)
-    }
+//    @Bean
+//    fun userDetailsService(datasource: DataSource): UserDetailsService {
+//        return JdbcUserDetailsManager(datasource)
+//    }
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {

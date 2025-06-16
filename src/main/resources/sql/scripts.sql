@@ -7,3 +7,15 @@ insert ignore into `authorities` values('user', 'read');
 
 insert ignore into `users` values('admin', '{bcrypt}$2a$12$awqr3jf94CeEwZDNbOeZkOV9bBUxsr.U8satIFdAlRjKKsXkv8Omy', '1');
 insert ignore into `authorities` values('admin', 'admin');
+
+
+create table customer (
+    id int not null auto_increment,
+    email varchar(45) not null,
+    pwd varchar(200) not null,
+    role varchar(45) not null,
+    PRIMARY KEY (id)
+);
+
+insert  into `customer` (`email`, `pwd`, `role`) values('user@example.com', '{noop}password', 'read');
+insert  into `customer` (`email`, `pwd`, `role`) values('admin@example.com', '{bcrypt}$2a$12$awqr3jf94CeEwZDNbOeZkOV9bBUxsr.U8satIFdAlRjKKsXkv8Omy', 'admin');
