@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: security
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/eazybank
+
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  security:
+    user:
+      name: user
+      password: password
+
+logging:
+  pattern:
+    console: "%green(%d{HH:mm:ss}) %blue(%-5level) %red([%thread]) %yellow(%logger{15}) - %msg%n"
+  level:
+    org:
+      springframework:
+        security: error
