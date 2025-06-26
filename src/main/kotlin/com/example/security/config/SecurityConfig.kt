@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher
 import javax.sql.DataSource
 
 @Configuration
@@ -18,7 +19,8 @@ class SecurityConfig {
 
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeHttpRequests { auth ->
+        http
+            .authorizeHttpRequests { auth ->
             auth.requestMatchers(
                 "/myAccount", "/myCards", "/myBalance", "/myLoans"
             ).authenticated().requestMatchers(
@@ -28,6 +30,12 @@ class SecurityConfig {
             .formLogin(withDefaults())
             .httpBasic(withDefaults())
             .csrf { it.disable() }
+//            .redirectToHttps { it ->
+//                it.requestMatchers(PathPatternRequestMatcher
+//                    .withDefaults()
+//                    .matcher("/**")
+//                )
+//            }
         return http.build()
     }
 
